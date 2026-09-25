@@ -66,3 +66,15 @@ a {
     color: #2c3e50;
     text-decoration: none;
 }
+
+/* phones */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 15px;
+        font-size: 14px;
+    }
+
+    p:first-of-type strong {
+        font-size:22px;
+    }
+}
