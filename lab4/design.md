@@ -23,32 +23,32 @@ We are using a simple yet slightly clever design colour palette throughout the d
 ### Header
 **Design:**: Dark green background with a centered name, amber tagline, location and email
 **Mock-up Screenshot**:
-![Header Mock-up]()
+![Header Mock-up](Header.png)
 
 ### Navigation
 **Design:**: Mid green bar, white bold links, darker green on hover
 **Mock-up Screenshot**:
-![Navigation Mock-up]()
+![Navigation Mock-up](Navigation.png)
 
 ### Section heading 
 **Design:**: Green heading with amber underline
 **Mock-up Screenshot**:
-![Section heading Mock-up]()
+![Section heading Mock-up](Section%20heading.png)
 
 ### Card
 **Design:**: White background, light green border, green left edge, rounded corners
 **Mock-up Screenshot**:
-![Card Mock-up]()
+![Card Mock-up](Card.png)
 
 ### Badge
 **Design:**: Amber pill for status labels such as "In progress"
 **Mock-up Screenshot**:
-![Badge Mock-up]()
+![Badge Mock-up](Badge.png)
 
 ### Footer
 **Design:**: Dark green background, centered text, amber links
 **Mock-up Screenshot**:
-![footer Mock-up]()
+![footer Mock-up](Footer.png)
 
 ## **4. Layout**
 -**Page width**: content centered and has side padding
@@ -58,10 +58,10 @@ We are using a simple yet slightly clever design colour palette throughout the d
 
 ### Full page (desktop)
 
-![Full Page Mock-up]()
+![Full Page Mock-up](Full%20page.png)
 
 ### Mobile
-![Mobile Mock-up]()
+![Mobile Mock-up](Mobile.png)
 
 ## 5. design Tokens in Code
 
