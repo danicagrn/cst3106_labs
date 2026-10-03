@@ -1,25 +1,30 @@
 # Danica Green's Portfolio Design System 
 
-this document purpose is to describe the design system for my portfolio website: the colours, typography, components and layout that every page is going to be built from. It includes screenshots of the HTML/CSS mock-ups to show what the design is going to look like before the site is built
+This document purpose is to describe the design system for my portfolio website: the colors, typography, components and layout that every page is going to be built from. It includes screenshots of the HTML/CSS mock-ups to show what the design is going to look like before the site is built
 
 ## **1. Colour Palette**
+
 We are using a simple yet slightly clever design colour palette throughout the design, with a description about what the color is going to be role is, the hex code and what is going to be used for 
 
--**Primary Color:**: `#0B6B4B` |Brand green: nav bar, headings, card left border, links|;
--**Primary Dark:**: `#12332A`|Header and footer background, nav hover|;
--**Accent:**: `#F2A541` |Heading underline, badges, tagline, footer links|;
--**Background:**: `#F7FAF8`|Page background|;
--**Surface:**: `#FFFFFF` |Card background|;
--**Text:**: `#2B2F2E`|Body Text|;
--**Muted:**: `#5F6B66`|Dates and secondary text|;
--**Border:**: `#D5E3DC`|Card borders and dividers|;
+-**Primary Colour:**: `#0B6B4B` |Brand green: nav bar, headings, card left border, links|
+-**Primary Dark:**: `#12332A`|Header and footer background, nav hover|
+-**Accent:**: `#F2A541` |Heading underline, badges, tagline, footer links|
+-**Background:**: `#F7FAF8`|Page background|
+-**Surface:**: `#FFFFFF` |Card background|
+-**Text:**: `#2B2F2E`|Body Text|
+-**Muted:**: `#5F6B66`|Dates and secondary text|
+-**Border:**: `#D5E3DC`|Card borders and dividers|
+
+---
 
 ## **2. Typography**
--**Body Text:**: `Arial, Helvetica, sans-serif`
--**Headers:**: `Trebuchet MS, sans-serif`
--**Dates and notes:**: `Arial`
+
+-**Body Text:**: `"Inter", Arial, sans-serif`
+-**Headers:**: `"Inter", Arial, sans-serif`
+-**Dates and notes:**: `"Inter", Arial`
 
 ## **3. Components**
+
 ### Header
 **Design:**: Dark green background with a centered name, amber tagline, location and email
 **Mock-up Screenshot**:
@@ -51,6 +56,7 @@ We are using a simple yet slightly clever design colour palette throughout the d
 ![footer Mock-up](Footer.png)
 
 ## **4. Layout**
+
 -**Page width**: content centered and has side padding
 -**Cards**: Cards sit side by side on wide screens and wrap on smaller ones 
 -**Long entries**: with education and volunteer work they use a single column stack
@@ -63,7 +69,7 @@ We are using a simple yet slightly clever design colour palette throughout the d
 ### Mobile
 ![Mobile Mock-up](Mobile.png)
 
-## 5. design Tokens in Code
+## 5. Design Tokens in Code
 
 ```css
 :root {
@@ -76,7 +82,12 @@ We are using a simple yet slightly clever design colour palette throughout the d
     --muted: #5F6B66;
     --border: #D5E3DC;
 
-    --font-main: "Inter", Arial, Helvetica, sans-serif;
-    --font-headings: "Poppins", Trebuchet MS, sans-serif;
+    --font-main: "Inter", Arial, sans-serif;
+    --font-headings: "Inter", Arial, sans-serif;
     --font-dates-notes: "Inter", Arial
 }
+```
+
+## Conclusion
+
+this design system is the blueprint for the portfolio where it gives one palette, one type scale and a set of components, so the entire page stays consistent when new projects are added during the semester
