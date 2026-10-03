@@ -36,42 +36,42 @@ We are using a simple yet slightly clever design colour palette throughout the d
 ## **3. Components**
 
 ### Header
-**Design:**: Dark green background with a centered name, amber tagline, location and email
+**Design**: Dark green background with a centered name, amber tagline, location and email
 
 **Mock-up Screenshot**:
 
 ![Header Mock-up](Header.png)
 
 ### Navigation
-**Design:**: Mid green bar, white bold links, darker green on hover
+**Design**: Mid green bar, white bold links, darker green on hover
 
 **Mock-up Screenshot**:
 
 ![Navigation Mock-up](Navigation.png)
 
 ### Section heading 
-**Design:**: Green heading with amber underline
+**Design**: Green heading with amber underline
 
 **Mock-up Screenshot**:
 
 ![Section heading Mock-up](Section%20heading.png)
 
 ### Card
-**Design:**: White background, light green border, green left edge, rounded corners
+**Design**: White background, light green border, green left edge, rounded corners
 
 **Mock-up Screenshot**:
 
 ![Card Mock-up](Card.png)
 
 ### Badge
-**Design:**: Amber pill for status labels such as "In progress"
+**Design**: Amber pill for status labels such as "In progress"
 
 **Mock-up Screenshot**:
 
 ![Badge Mock-up](Badge.png)
 
 ### Footer
-**Design:**: Dark green background, centered text, amber links
+**Design**: Dark green background, centered text, amber links
 
 **Mock-up Screenshot**:
 
