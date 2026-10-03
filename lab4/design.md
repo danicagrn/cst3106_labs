@@ -1,10 +1,10 @@
 # Danica Green's Portfolio Design System 
 
-This document purpose is to describe the design system for my portfolio website: the colors, typography, components and layout that every page is going to be built from. It includes screenshots of the HTML/CSS mock-ups to show what the design is going to look like before the site is built
+This document purpose is to describe the design system for my portfolio website: the colours, typography, components and layout that every page is going to be built from. It includes screenshots of the HTML/CSS mock-ups to show what the design is going to look like before the site is built
 
 ## **1. Colour Palette**
 
-We are using a simple yet slightly clever design colour palette throughout the design, with a description about what the color is going to be role is, the hex code and what is going to be used for 
+We are using a simple yet slightly clever design colour palette throughout the design, with a description about what the colour is going to be role is, the hex code and what is going to be used for 
 
 - **Primary Colour:** `#0B6B4B` |Brand green: nav bar, headings, card left border, links|
 
