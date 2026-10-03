@@ -6,32 +6,32 @@ This document purpose is to describe the design system for my portfolio website:
 
 We are using a simple yet slightly clever design colour palette throughout the design, with a description about what the color is going to be role is, the hex code and what is going to be used for 
 
-- **Primary Colour:**: `#0B6B4B` |Brand green: nav bar, headings, card left border, links|
+- **Primary Colour:** `#0B6B4B` |Brand green: nav bar, headings, card left border, links|
 
-- **Primary Dark:**: `#12332A`|Header and footer background, nav hover|
+- **Primary Dark:** `#12332A`|Header and footer background, nav hover|
 
-- **Accent:**: `#F2A541` |Heading underline, badges, tagline, footer links|
+- **Accent:** `#F2A541` |Heading underline, badges, tagline, footer links|
 
-- **Background:**: `#F7FAF8`|Page background|
+- **Background:** `#F7FAF8`|Page background|
 
-- **Surface:**: `#FFFFFF` |Card background|
+- **Surface:** `#FFFFFF` |Card background|
 
-- **Text:**: `#2B2F2E`|Body Text|
+- **Text:** `#2B2F2E`|Body Text|
 
-- **Muted:**: `#5F6B66`|Dates and secondary text|
+- **Muted:** `#5F6B66`|Dates and secondary text|
 
-- **Border:**: `#D5E3DC`|Card borders and dividers|
+- **Border:** `#D5E3DC`|Card borders and dividers|
 
 
 ---
 
 ## **2. Typography**
 
-- **Body Text:**: `"Inter", Arial, sans-serif`
+- **Body Text:** `"Inter", Arial, sans-serif`
 
-- **Headers:**: `"Inter", Arial, sans-serif`
+- **Headers:** `"Inter", Arial, sans-serif`
 
-- **Dates and notes:**: `"Inter", Arial`
+- **Dates and notes:** `"Inter", Arial`
 
 ## **3. Components**
 
