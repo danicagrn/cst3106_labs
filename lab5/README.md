@@ -54,7 +54,7 @@ This document outlines the colours, fonts and other necessary designs for the Ya
 The colour palette has a very similar look for the table as you would see in other dice games however slightly different to give it its own look, the dice colours give a classic look however make them stand out. The brass is mainly just aesthetic choice to work with everything else. The scorecard gives a paper feel as it would in the real game
 
 #### 1.1 Primary Colours
-| Name | | Hex | | Usage |
+| Name | Hex | Usage |
 | --- |  --- |  --- |
 | **Lagoon 900** | `#0C2A30` | Page background, dice tray |
 | **Lagoon 700** | `#14434B` | Panels such as the game board |
@@ -139,7 +139,8 @@ the mockups are built in HTML/CSS (`mockup.html` + `mockup.css`) using the colou
 - **scorecard**: there is a header above to split the scorecard into 3 sections category, how it scores and score, then the upper section table is listed with the lower section table under it, then at the bottom of the scorecard the total score 
 
 ## game flow 
-## 1. How the game works
+
+###  How the game works
 1. The player presses the **Roll dice**, the game rolls all five dice and the roll counter tells the player they have used one roll
 2. The player presses dice to **hold them** the game marks those dice as held
 3. The player presses **Roll dice**, the game rerolls the dice that are not held, again the roll counter tells the player now they have used 2 rolls
