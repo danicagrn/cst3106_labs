@@ -53,25 +53,25 @@ This document outlines the colours, fonts and other necessary designs for the Ya
 
 The colour palette has a very similar look for the table as you would see in other dice games however slightly different to give it its own look, the dice colours give a classic look however make them stand out. The brass is mainly just aesthetic choice to work with everything else. The scorecard gives a paper feel as it would in the real game
 
-#### **1.1 Primary Colours**
+#### 1.1 Primary Colours
 | Name | | Hex | | Usage |
-| --- | | --- | | --- |
+| --- |  --- |  --- |
 | **Lagoon 900** | `#0C2A30` | Page background, dice tray |
 | **Lagoon 700** | `#14434B` | Panels such as the game board |
 | **Bone** | `#F4EFE4` | Dice faces, scorecard paper |
 | **Pip Red** | `#C8372D` | Dice pips, zero scores |
 
-#### **1.2 Secondary Colours**
-| Name | | Hex | | Usage |
-| --- | | --- | | --- |
-| **Brass** | `#E0A93B` | Main buttons, held dice, selected category, lower section accent|
+#### 1.2 Secondary Colours
+| Name | Hex | Usage |
+| --- | --- |  --- |
+| **Brass** | `#E0A93B` | Main buttons, held dice, selected category, lower section accent |
 | **Lagoon 500** | `#2A6A73` | Borders, upper section accent|
 | **Mist** | `#D7E3E1` | Body text on dark backgrounds |
 | **Ink** | `#162428` | Body text on paper and on brass |
 
-#### **1.3 Tints**
-| Name | | Hex | | Usage |
-| --- | | --- | | --- |
+#### 1.3 Tints
+| Name | Hex | Usage |
+| --- | --- | --- |
 | **Bone Shade** | `#E3DCCB` | Row dividers on the scoreboard |
 | **Ink soft** | `#4F6165` | Secondary text on paper
 | **Brass Deep** | `#8A5A0B` | Brass when used as text or a thin line on paper, button shadow |
