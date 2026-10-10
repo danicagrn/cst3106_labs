@@ -1,6 +1,6 @@
-## Yatzy Game
+# Yatzy Game
 
-This is a implementation of the dice game **Yatzy** (also known as Yahtzee) in a browser-based environment. Players roll five dice up to three times per turn and decide which to keep and fill a scoreboard with the best combinations they can
+This is an implementation of the dice game **Yatzy** (also known as Yahtzee) in a browser-based environment. Players roll five dice up to three times per turn and decide which to keep and fill a scoreboard with the best combinations they can
 
 ## 1. Rules
 1. Roll all five dice 
@@ -78,7 +78,7 @@ The colour palette has a very similar look for the table as you would see in oth
 
 ### Typography
 
-The headings are using a chunky letterforms to have a playful feel while still suiting a dice game. While the body text uses a font that makes it easy to tell letters and numbers apart which matter in a scorecard full of numbers 
+The headings are using chunky letterforms to have a playful feel while still suiting a dice game. While the body text uses a font that makes it easy to tell letters and numbers apart which matter in a scorecard full of numbers 
 
 - **Headings and subheadings**: `"Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif`
 - **Body text, labels, scores**: `"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif`
@@ -104,28 +104,31 @@ The headings are using a chunky letterforms to have a playful feel while still s
 ### states
 | State | Look |
 | --- | --- |
-| Not rolled yet | | plain die, no pips, not pressable |
-| Resting | | full colour face, solid 4px shadow |
-| Hover | | lifts 3 px  |
-| Held | | lifts 8px, 4 px brass ring "Held" label underneath  |
-| Rolling  | | tumbles for 0.6 s up and down with small rotations  |
-| Disabled | | faded, not pressable |
+| Not rolled yet | plain die, no pips, not pressable |
+| Resting | full colour face, solid 4px shadow |
+| Hover | lifts 3 px |
+| Held | lifts 8px, 4 px brass ring "Held" label underneath  |
+| Rolling  | tumbles for 0.6 s up and down with small rotations |
+| Disabled | faded, not pressable |
 
 
 ## 4. Game Mockups 
 
 the mockups are built in HTML/CSS (`mockup.html` + `mockup.css`) using the colour palette and fonts outlined. the code is commented to explain what each section is 
 
-# Game Board (Desktop)
+### Game Screen (Desktop)
 ![Full game screen on desktop](images/full_Board.png)
 
-# Scorecard
+### Game Board
+![The Actual Game Board](images/Board.png)
+
+### Scorecard
 ![the scoreboard for the game paper like](images/Scorecard.png)
 
-# Game over screen
+### Game over screen
 ![a game over screen once the game is over](images/game_over.png)
 
-# Mobile 
+### Mobile 
 ![game screen on a phone](images/Mobile.png)
 
 ## 5. Layout, Game Flow, Animations
