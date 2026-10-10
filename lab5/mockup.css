@@ -181,6 +181,9 @@ button { font: inherit; cursor: pointer; }
   display: grid;
   justify-items: center;
   gap: var(--space-2);
+  flex: 1 1 0;
+  min-width: 0;
+
 }
 
 .die-tag {
@@ -189,9 +192,10 @@ button { font: inherit; cursor: pointer; }
 }
 .die-slot.is-held .die-tag { color: var(--brass); font-weight: 700; }
 
+
 /* The die body */
 .die {
-  width: var(--die-size);
+  width: min(var(--die-size), 100%);
   aspect-ratio: 1;
   padding: 14%;
   border: 0;
@@ -415,7 +419,8 @@ button { font: inherit; cursor: pointer; }
 @media (max-width: 480px) {
   .panel { padding: var(--space-4); }
   .dice-tray { padding-inline: var(--space-2); gap: var(--space-1); }
-  .score-table .rule { display: none; } /* keep the card to 2 columns on phones */
+  .score-table th.rule, .score-table td.rule { width: 0; max-width: 0; padding: 0; border: 0; overflow: hidden; font-size: 0; line-height: 0;} /* ensures table fills card */
+  .score-table .bonus-progress { display: none; }
   .btn { flex: 1 1 100%; }
 }
 

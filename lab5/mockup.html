@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Yatzy - Game mock-up></title>
+        <title Yatzy - Game mock-up></title>
 
         <!-- Fonts -->
          <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,7 +78,7 @@
 
                         <!--Die 4: four, held-->
                         <li class="die-slot is-held">
-                            <button class="die" aria-pressed="true" aria-label="Die 2: 4, held">
+                            <button class="die" aria-pressed="true" aria-label="Die 4: 4, held">
                                 <span class="pip tl"></span><span class="pip tr"></span>
                                 <span class="pip bl"></span><span class="pip br"></span>
                             </button>
@@ -113,13 +113,13 @@
                  <section class="panel scorecard" aria-labelledby="card-title">
                     <table class="score-table">
                         <caption id="card-title">Scorecard</caption>
-                        <thread>
+                        <thead>
                             <tr>
                                 <th scope="col">Category</th>
                                 <th scope="col" class="rule">How it scores</th>
                                 <th scope="col" class="num">Score</th>
                             </tr>
-                        </thread>
+                        </thead>
 
                         <!-- Upper section -->
                          <tbody>
@@ -153,8 +153,8 @@
                                 <td class="num"><span class="score-value">10</span></td>
                             </tr>
                             <tr>
-                                <th scope="row">Fours</th>
-                                <td class="rule">Sum of all 4s</td>
+                                <th scope="row">Sixes</th>
+                                <td class="rule">Sum of all 6s</td>
                                 <td class="num"><button class="pick" aria-label="Score 6 in Sixes">6</button></td>
                             </tr>
 
@@ -187,7 +187,7 @@
                                 <th scope="row">Two Pairs</th>
                                 <td class="rule">Sum of the four dice in two different pairs</td>
                                 <!--Greyed dashed button-->
-                                <td class="num"><button class="pick is zero" aria-label="Score 0 in Four of a Kind">0</button></td>
+                                <td class="num"><button class="pick is-zero" aria-label="Score 0 in Two Pairs">0</button></td>
                             </tr>
                             <tr>
                                 <th scope="row">Three of a Kind</th>
@@ -197,7 +197,7 @@
                              <tr>
                                 <th scope="row">Four of a Kind</th>
                                 <td class="rule">Sum of the four matching dice</td>
-                                <td class="num"><button class="pick is zero" aria-label="Score 0 in four of a kind">0</button></td>
+                                <td class="num"><button class="pick is-zero" aria-label="Score 0 in four of a kind">0</button></td>
                             </tr>
                             <tr>
                                 <th scope="row">Small Straight</th>
@@ -207,12 +207,12 @@
                             <tr>
                                 <th scope="row">Large Straight</th>
                                 <td class="rule">2-3-4-5-6 scores 20</td>
-                                <td class="num"><button class="pick is zero" aria-label="Score 0 in Large Straight">0</button></td>
+                                <td class="num"><button class="pick is-zero" aria-label="Score 0 in Large Straight">0</button></td>
                             </tr>
                             <tr>
                                 <th scope="row">Full House</th>
                                 <td class="rule">Three of one number and two of another: sum of all five</td>
-                                <td class="num"><button class="pick is zero" aria-label="Score 0 in Full House">0</button></td>
+                                <td class="num"><button class="pick is-zero" aria-label="Score 0 in Full House">0</button></td>
                             </tr>
                             <tr>
                                 <th scope="row">Chance</th>
@@ -222,7 +222,7 @@
                             <tr>
                                 <th scope="row">Yatzy</th>
                                 <td class="rule">Five of the same number scores 50</td>
-                                <td class="num"><button class="pick is zero" aria-label="Score 0 in Yatzy">0</button></td>
+                                <td class="num"><button class="pick is-zero" aria-label="Score 0 in Yatzy">0</button></td>
                             </tr>
                             
                             <tr class="grand-total">
