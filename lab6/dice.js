@@ -17,16 +17,28 @@ class Dice {
 
     // Rolls every die that is not held and updates this.values
     rollAll() {
-        // TODO: loop over the dice, skip held ones, call this.roll() for the rest 
-    }
+         // TODO: loop over the dice, skip held ones, call this.roll() for the rest 
+        for (let i = 0; i < this.numberOfDice; i++) {
+            if (!this.held[i]) {
+                this.values[i] = this.roll();
+            }
+        }
+        return this.values
+    }  
 
     // Toggles whether the die at the given index (0-4) is held
     toggleHold(index) {
         // TODO: flip this.held[index]
+        if (index < 0 || index >= this.numberOfDice) return;
+        if (this.values[index] === 0) return;
+        this.held[index] = !this.held[index];
     }
 
     // clears values and holds at the start of a new turn
     reset() {
         // TODO: set values back to 0 and held back to false 
+        this.values = new Array(this.numberofDice).fill(0);
+        this.held = new Array(this.numberOfDice).fill(false);
+        
     }
  }
