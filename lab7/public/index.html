@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yatzy - Dice Module</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="game">
+        <h1>Yatzy</h1>
+
+        <p class="rolls-left">Rolls left: <span id="rolls-left">3</span></p>
+        
+        <div id="dice-container" class="dice-container">
+            <!-- dice buttons are created by main.js-->
+        </div>
+
+        <div class="controls">
+            <button id ="roll-btn" class="btn btn-primary">Roll Dice</button>
+            <button id="new-turn-btn" class="btn btn-secondary">New Turn</button>
+        </div>
+
+        <p id="message" class="message" role="alert"></p>
+    </main>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
