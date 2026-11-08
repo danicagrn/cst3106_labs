@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui, sans-serif;
+    background: #006341;
+    color: #222;
+}
+
+.game {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.dice-container {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.die {
+    width: 70px;
+    height: 70px;
+    font-size: 2.5rem;
+    border: 3px solid #333;
+    border-radius: 10px;
+    background: #fafafa;
+    cursor: pointer;
+}
+
+.die.held {
+    background: #ffe9a8;
+    border-color: #d99a00;
+}
+
+.die:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.controls {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 0.6rem 1.2 rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #006341;
+    color: #fff;
+}
+
+.btn-secondary {
+    background: #ddd;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.message {
+    min-height: 1.5rem;
+    margin-top: 1rem;
+    color: #b00020;
+    font-weight: 600;
+}
