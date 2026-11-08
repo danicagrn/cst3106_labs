@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab 08 - Dice Rolling Animation with jQuery</title>
+
+  <!-- Same fonts as the Yatzy project -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Load jQuery from a CDN (must come BEFORE our own script) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Fallback: if the first CDN was blocked, -->
+  <script>
+    window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><\/script>');
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #f3f6f4;
+      font-family: "Atkinson Hyperlegible", sans-serif;
+      color: #1b2b24;
+    }
+    .panel { text-align: center; padding: 24px; }
+    h1 { font-family: "Bricolage Grotesque", sans-serif; margin: 0 0 24px; }
+
+    /* Row that holds all the dice; wraps onto a second line on small screens */
+    .dice-tray {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    /* Dice representation - a 3x3 grid where each cell can hold one dot */
+    .die {
+      width: 100px;
+      height: 100px;
+      padding: 10px;
+      box-sizing: border-box;
+      background: #fff;
+      border: 3px solid #1b2b24;
+      border-radius: 18px;
+      display: grid;
+      grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+      gap: 3px;
+      box-shadow: 0 5px 0 #1b2b24;
+    }
+    .cell { display: grid; place-items: center; }
+    /* A dot is only drawn when its cell has the class "on" */
+    .cell.on::after {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #1b2b24;
+    }
+
+    .btn {
+      font: inherit;
+      font-weight: 700;
+      padding: 12px 28px;
+      border: 0;
+      border-radius: 10px;
+      background: #006341;
+      color: #fff;
+      cursor: pointer;
+    }
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+    .btn:focus-visible { outline: 3px solid #1b2b24; outline-offset: 3px; }
+
+    #result { margin: 16px 0 0; min-height: 1.5em; font-size: 1.1rem; }
+    #roll-count { margin: 6px 0 0; color: #4a5a52; }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <h1>Roll the dice</h1>
+
+    <!-- All dice are created by jQuery below -->
+    <div class="dice-tray" id="dice-tray"></div>
+
+    <!-- Button that triggers a roll (listener attached with jQuery) -->
+    <button class="btn" id="roll-btn">Roll dice</button>
+
+    <!-- Live message areas, announced to screen readers -->
+    <p id="result" role="status"></p>
+    <p id="roll-count">Rolls so far: 0</p>
+  </main>
+
+  <script>
+    // If jQuery failed to load from both CDNs, tell the user instead of showing a blank page
+    if (!window.jQuery) {
+      document.getElementById("result").textContent =
+        "jQuery could not be loaded. Check your internet connection or open the browser console (F12).";
+    }
+  </script>
+
+  <script>
+    // Wait until the page is fully loaded before running any jQuery code
+    $(document).ready(function () {
+
+      // How many dice to show. Change this number to roll more or fewer dice.
+      const DICE_COUNT = 5;
+
+      // For each die value (1-6), which of the 9 grid cells (0-8) get a dot.
+      // Cell layout:  0 1 2
+      //               3 4 5
+      //               6 7 8
+      const FACES = {
+        1: [4],
+        2: [0, 8],
+        3: [0, 4, 8],
+        4: [0, 2, 6, 8],
+        5: [0, 2, 4, 6, 8],
+        6: [0, 2, 3, 5, 6, 8]
+      };
+
+      const $tray = $("#dice-tray");
+      const $button = $("#roll-btn");
+      const $result = $("#result");
+      const $count = $("#roll-count");
+
+      let rollCount = 0;   // how many times the player has rolled
+
+      // ---------- DICE REPRESENTATION ----------
+
+      // Build one die (a div with 9 cells) for each die we need
+      for (let d = 0; d < DICE_COUNT; d++) {
+        const $die = $('<div class="die"></div>');
+        for (let i = 0; i < 9; i++) {
+          $die.append('<div class="cell"></div>');
+        }
+        $tray.append($die);
+      }
+
+      // Show a value (1-6) on ONE die by turning the right dots on
+      function showFace($die, value) {
+        $die.children(".cell")
+          .removeClass("on")                      // clear all dots
+          .filter(function (index) {              // keep only the cells for this face
+            return FACES[value].includes(index);
+          })
+          .addClass("on");                        // draw those dots
+      }
+
+      // Random whole number from 1 to 6
+      function randomFace() {
+        return Math.floor(Math.random() * 6) + 1;
+      }
+
+      // Every die starts out showing 6 dots
+      $tray.children(".die").each(function () {
+        showFace($(this), 6);
+      });
+
+      // ---------- DICE ROLLING ANIMATION ----------
+
+      function rollDice() {
+        // Disable the button so a new roll can't start mid-animation
+        $button.prop("disabled", true);
+        $result.text("Rolling...");
+
+        const results = [];                       // final value of each die
+        let finished = 0;                         // how many dice have stopped spinning
+
+        // Animate each die on its own
+        $tray.children(".die").each(function (index) {
+          const $die = $(this);
+
+          // While spinning, flip through random faces every 80 ms
+          const flicker = setInterval(function () {
+            showFace($die, randomFace());
+          }, 80);
+
+          // jQuery animates a plain object: "deg" goes 0 -> 720 (two full spins).
+          // Each die gets a slightly different duration so they stop one by one.
+          $({ deg: 0 }).animate({ deg: 720 }, {
+            duration: 800 + index * 150,
+            easing: "swing",
+            step: function (now) {
+              $die.css("transform", "rotate(" + now + "deg)");
+            },
+            // complete runs when THIS die's animation is finished
+            complete: function () {
+              clearInterval(flicker);             // stop the flickering faces
+              $die.css("transform", "rotate(0deg)");
+
+              const value = randomFace();         // the real result for this die
+              showFace($die, value);
+              results[index] = value;
+              finished++;
+
+              // When the LAST die stops, the whole roll is done
+              if (finished === DICE_COUNT) {
+                rollCount++;
+                $count.text("Rolls so far: " + rollCount);
+                $result.text("You rolled: " + results.join(", ") +
+                             " (total " + results.reduce((a, b) => a + b, 0) + ")");
+                $button.prop("disabled", false);  // allow the next roll
+              }
+            }
+          });
+        });
+      }
+
+      // ---------- EVENT HANDLING  ----------
+      // jQuery attaches the click listener to the button
+      $button.on("click", rollDice);
+    });
+  </script>
+</body>
+</html>
