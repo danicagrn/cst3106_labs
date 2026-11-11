@@ -162,12 +162,12 @@
       async function fetchDiceValues(count) {
         try {
           const response = await fetch(ROLL_URL, {
-            method: "POST",                                   // POST because we send data
-            headers: { "Content-Type": "application/json" },  // body is JSON
-            body: JSON.stringify({ numberOfDice: count })     // data sent to the server
+            method: "POST",                                   
+            headers: { "Content-Type": "application/json" },  
+            body: JSON.stringify({ numberOfDice: count })     
           });
  
-          // fetch only rejects on network errors, so check the HTTP status ourselves
+          // fetch only rejects on network errors, so check the HTTP status 
           if (!response.ok) {
             throw new Error("Server responded with status " + response.status);
           }
@@ -176,7 +176,7 @@
           return data.diceResults;                            // array of values (1-6)
         } catch (error) {
           // No server running (e.g. file opened directly) or a bad response:
-          // log the problem and fall back to local random values so the lab still works
+          // log the problem and fall back to local random values
           console.error("Fetch failed, using local random values:", error);
           return Array.from({ length: count }, randomFace);
         }
