@@ -3,28 +3,21 @@ A single markdown file for how the Hospital Triage app **looks**. **feels** and 
 The app has two audiences: **patients** (User page) and **hospital staff** (Admin page). Each gets its own visual identity, but are built from the same shared rules.
 
 ## 1. Overview
-
-| | User Page | Admin Page |
-|---|---|---|
-| **Who uses it** | Patients arriving at the emergency room | Triage nurses / hospital staff |
-| **Main goal** | Describe the injury and pain level quickly | Review, prioritise and manage the waiting list |
-| **Mood** | Calm, reassuring, simple | Focused, efficient, information dense |
-| **Page title** | `Hospital Triage - User` | `Hospital Triage - Admin` |
+| | Home Page | User Page | Admin Page |
+|---|---|---|---|
+| **Who uses it** | Everyone | Patients arriving at the emergency room | Triage nurses / hospital staff |
+| **Main goal** | Explain the app and send people to the right page | Describe the injury and pain level quickly | Review, prioritise and manage the waiting list |
+| **Mood** | Welcoming, clear | Calm, reassuring, simple | Focused, efficient, information-dense |
+| **Page title** | `Hospital Triage - Home` | `Hospital Triage - Patient` | `Hospital Triage - Hospital staff` |
 
 ### How the app works 
 
-```mermaid
-flowchart LR
-    A[Patient opens User page] --> B[Selects injury type]
-    B --> C[Selects pain level 1-10]
-    C --> D[Presses Submit Entry]
-    D --> E[(Triage list)]
-    E --> F[Staff opens Admin page]
-    F --> G[Loads data and reviews entries]
-    G --> H{Staff action}
-    H -->|Raise or lower priority| E
-    H -->|Patient seen| I[Remove from triage]
-```
+On the **Patient** side they open the User page, select their injury type, select their pain level (1-10) and then presses the submit entry and it is placed into the triage list 
+
+On the **Staff** side they open the Admin page, presses load data, reviews the list and sees the highest attention first on the list, then if neccessary they can increase or decrease attention
+
+Once the patient has been seen they remove it from the Triage list
+
 
 ## 2. Fonts
 
@@ -80,7 +73,7 @@ Import (Google Fonts):
 | Mint White | `#F0FDFA` | Page background |
 | Ink | `#0F172A` | Body text |
 
-**Why:** teal and mint are associated with healthcare, calm and cleanliness. A patient in pain should not face alarming reds, so the User page stays soft and reassuring.
+**Why:** teal and mint are associated with healthcare, calm and cleanliness. A patient in pain should not face alarming reds, so the Patient page stays soft and reassuring.
 
 ### 3.2 Admin page palette: *"Command Desk"*
 
@@ -91,6 +84,15 @@ Import (Google Fonts):
 | Amber 500 | `#F59E0B` | Highlight for the selected row |
 | Ice Blue | `#EFF6FF` | Page background, zebra table rows |
 | Ink | `#0F172A` | Body text |
+
+| Swatch | Name | Hex | Role |
+|---|:---:|---|
+| Teal 700 | `#0F766E` | Start of the hero gradient, patient card |
+| Navy 900 | `#1E3A8A` | End of the hero gradient, staff card |
+|| Cloud | `#F8FAFC` | Page background |
+| White | `#FFFFFF` | Cards, navigation bar |
+ 
+**Why:** the Home page is the bridge between the two worlds. Its hero banner blends the teal of the User page into the navy of the Admin page, and each role card repeats the colour of the page it leads to. People learn the colour link before they even click.
 
 ### 3.3 Shared urgency colours
 
@@ -134,6 +136,10 @@ Used on both pages so the meaning of the colour never changes
 
 | Component | Page | Purpose | Key design choice |
 |---|:---:|---|---|
+| Navigation bar | All | Move between pages | White bar, current page underlined |
+| Hero banner | Home | Welcome and explain | Teal-to-navy gradient, white text |
+| Role cards | Home | Send people to the right page | Two cards, colour matches the target page |
+| How-it-works steps | Home | Explain the process in 3 steps | Numbered cards |
 | Page title | Both | Identify the page | Large, centred, accent colour |
 | Description | Both | Explain what to do | Short sentence directly under the title |
 | Injury option buttons |  User | Choose the type of injury | Large "chip" buttons with an icon |
@@ -143,7 +149,30 @@ Used on both pages so the meaning of the colour never changes
 | Load data button | Admin | Refresh the list | Secondary button above the table |
 | Selection actions | Admin | Manage the selected entry | Button group with colour-coded actions |
 
-### 4.2 Titles
+### 4.2 Navigation bar *(all pages)*
+ 
+| Property | Value |
+|---|---|
+| Layout | Brand name on the left, three links on the right: **Home · User · Admin** User and Admin pages: a single **← Back to Home** link, with no link to the other role's page |
+| Background | `#FFFFFF` with a soft bottom shadow |
+| Link style | Inter 600, minimum 48px tall |
+| Current page | Accent colour text with a 3px underline and `aria-current="page"` |
+| Brand | `🏥 Hospital Triage`, always links back to Home |
+ 
+**Reasoning:** patients and staff have different jobs, so the User and Admin pages never link to each other. Both lead back to Home, which acts as the single "front door" for choosing a role. The bar stays in the same place on every page.
+
+### 4.3 🏠 Home page components
+ 
+| Component | Design | Reasoning |
+|---|---|---|
+| **Hero banner** | Teal-to-navy gradient, 🏥 icon, white title, one-sentence tagline | Sets a trustworthy first impression and states the app's purpose immediately |
+| **Role cards** | Two white cards side by side, each with an 8px coloured top border, an icon, a heading ("I am a patient" / "I am hospital staff"), one sentence and a button | Visitors choose by *who they are*, not by technical page names |
+| **How-it-works steps** | Three small cards numbered 1 – 3: Describe, Prioritise, Treat | Gives a quick mental model of the whole process |
+| **Urgency legend** | The four urgency badges in one row | Teaches the colour code before the visitor sees it in use |
+ 
+The role cards overlap the bottom of the hero banner slightly. This pulls the eye down from the title to the two choices.
+
+### 4.4 Titles
 
 | Property | User page | Admin page |
 |---|---|---|
@@ -154,10 +183,11 @@ Used on both pages so the meaning of the colour never changes
 
 **Reasoning:** the title is the first thing a person reads, so it is the biggest element on the screen. The colour tells the user which area they are in before they read a single word 
 
-### 4.3 Description text
+### 4.5 Description text
 
 - **Location:** directly below the title
 - **User page:** *"Choose where it hurts and how strong the pain is, then submit."*
+- **Home page:** *"Tell us where it hurts and how much. Our staff will see the most urgent patients first."*
 - **Admin page:** *"Entries are listed from highest to lowest necessary attention (1 = lowest, 10 = highest)."*
 - **Style** Inter 18px, centred, maximum width of about 60 characters per line for easy reading 
 
@@ -189,11 +219,7 @@ Used on both pages so the meaning of the colour never changes
 
 ### 4.5 Pain level scale *(User)*
 
-```
- [1] [2] [3] [4] [5] [6] [7] [8] [9] [10]
-      ──────────────────────────────  
- Not bad                          Unbearable
-```
+![Pain level scale](images/pain_scale_level.png)
 
 - Ten equal sized buttons in a single row (wrapping into two rows of five on small screens)
 - Labels only at the two ends: **1 = Not bad** and **10 = Unbearable**
@@ -250,62 +276,29 @@ Used on both pages so the meaning of the colour never changes
 - **Mobile first:** the layout stacks vertically on small screens and spreads out on larger ones.
 - Content is grouped into **cards** (white background, 12px radius, soft shadow) so each task is visually separated
 
-### 5.2 User page wireframe 
-```
-┌──────────────────────────────────────────────────┐
-│               Hospital Triage - User             │  ← Title
-│                                                  │
-│     Choose where it hurts and how strong the     │  ← Description
-│        pain is, then submit.                     │
-│                                                  │
-│  ┌────────────────────────────────────────────┐  │
-│  │  Type of injury                            │  │
-│  │  [Head] [Heart] [Lung] [Neck]              │  │  ← Card 1
-│  │  [Stomach] [Bone or Muscle] [Burn or Cut]  │  │
-│  └────────────────────────────────────────────┘  │
-│  ┌────────────────────────────────────────────┐  │
-│  │  Level of pain                             │  │
-│  │  [1][2][3][4][5][6][7][8][9][10]           │  │  ← Card 2
-│  │  Not bad                      Unbearable   │  │
-│  └────────────────────────────────────────────┘  │
-│                                                  │
-│               [   Submit Entry   ]               │  ← Primary action
-└──────────────────────────────────────────────────┘
-```
+### 5.2 Home page Mockup
+![Home page](images/home_page.png)
 
-### Admin page wireframe
-```
-┌──────────────────────────────────────────────────────────┐
-│                Hospital Triage - Admin                   │  ← Title
-│   Entries are listed from highest to lowest attention.   │  ← Description
-│                                                          │
-│                      [ Load Data ]                       │
-│  ┌────────────────────────────────────────────────────┐  │
-│  │ Entry # │ Attention │ Injury Type │ Pain │          │  │  ← Header
-│  ├─────────┼───────────┼─────────────┼──────┼──────────┤  │
-│  │   4     │ 🔴 10     │ Heart       │ 9    │ [Select] │  │
-│  │   1     │ 🟠 8      │ Head        │ 7    │ [Select] │  │  ← Rows
-│  │   3     │ 🟡 5      │ Bone/Muscle │ 6    │ [Select] │  │
-│  └────────────────────────────────────────────────────┘  │
-│                                                          │
-│  ┌────────────────────────────────────────────────────┐  │
-│  │ Selected Entry: 1                                  │  │
-│  │ [Increase Attention] [Decrease Attention] [Remove] │  │  ← Actions
-│  └────────────────────────────────────────────────────┘  │
-└──────────────────────────────────────────────────────────┘
-```
-**Note** the coloured circles in the Admin wireframe is just for markdown purposes on actual app it will have the font and the number highlighted in the colour necessary
+
+### 5.3 User page Mockup
+![User page](images/user_page.png)
+
+### 5.3 Admin page Mockup
+![Admin page](images/admin_page.png)
 
 ### 5.4 Navigation flow
 
-```mermaid
-flowchart TD
-    U[User Page] -->|Submit Entry| S[(Triage list)]
-    S -->|Load Data| A[Admin Page]
-    A -->|Select row| R[Selection actions]
-    R -->|Increase / Decrease| A
-    R -->|Remove From Triage| A
-```
+On the **Home** page the user either picks I am a patient or I am hospital staff. If the user picks I am a patient they go to the User page where they submit an entry and it is sent to the triage list where the hospital staff, load the data, select, edit and remove data when neccessary 
+
+User and Admin pages only link back to home, never to each other
+
+| From | To | How |
+|---|---|---|
+| Any page | Home | Brand name or **Home** link in the navigation bar |
+| Home | User | **Go to User page** button on the patient card |
+| Home | Admin | **Go to Admin page** button on the staff card |
+| User ↔ Admin | *(no direct link)* | Go back to Home first, then choose the other page |
+
 
 ### 5.5 How the flow helps the user 
 

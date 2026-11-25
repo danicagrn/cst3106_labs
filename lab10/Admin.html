@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hospital Triage - Admin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin">
+  <nav class="topnav" aria-label="Main">
+    <div class="inner">
+      <a class="brand" href="home.html">🏥 Hospital Triage</a>
+      <ul>
+        <li><a class="link" href="home.html">← Back to Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Hospital Triage - Admin</h1>
+    <p class="description">Entries are listed from highest to lowest necessary attention (1 = lowest, 10 = highest).</p>
+
+    <section class="card" aria-label="Triage list">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Entry Number</th>
+              <th scope="col">Necessary Attention</th>
+              <th scope="col">Injury Type</th>
+              <th scope="col">Pain Level</th>
+              <th scope="col"><span class="sr-only" style="position:absolute;left:-9999px">Action</span></th>
+            </tr>
+          </thead>
+          <tbody id="triage-body">
+            <tr><td colspan="5" class="empty">No entries yet. Select Load Data to see the list.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-actions">
+        <button type="button" class="btn-secondary" id="load-btn">Load Data</button>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="actions-heading">
+      <h2 id="actions-heading">Selection actions</h2>
+      <p class="selection-status" id="selection-status">Selected Entry: none</p>
+      <div class="action-group">
+        <button type="button" class="btn-primary" id="inc-btn" disabled>⬆️ Increase Necessary Attention</button>
+        <button type="button" class="btn-secondary" id="dec-btn" disabled>⬇️ Decrease Necessary Attention</button>
+        <span class="spacer" aria-hidden="true"></span>
+        <button type="button" class="btn-danger" id="remove-btn" disabled>🗑️ Remove From Triage</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Sample data (in the real app this would come from the server)
+    const sampleData = [
+      { id: 1, attention: 8,  injury: "Head",           pain: 7 },
+      { id: 2, attention: 3,  injury: "Burn or Cut",    pain: 3 },
+      { id: 3, attention: 5,  injury: "Bone or Muscle", pain: 6 },
+      { id: 4, attention: 10, injury: "Heart",          pain: 9 },
+      { id: 5, attention: 6,  injury: "Stomach",        pain: 5 }
+    ];
+
+    let entries = [];
+    let selectedId = null;
+
+    const body = document.getElementById("triage-body");
+    const status = document.getElementById("selection-status");
+    const incBtn = document.getElementById("inc-btn");
+    const decBtn = document.getElementById("dec-btn");
+    const removeBtn = document.getElementById("remove-btn");
+
+    function levelFor(n) {
+      if (n <= 3) return "low";
+      if (n <= 6) return "moderate";
+      if (n <= 8) return "high";
+      return "critical";
+    }
+
+    function render() {
+      entries.sort((a, b) => b.attention - a.attention);
+      if (entries.length === 0) {
+        body.innerHTML = '<tr><td colspan="5" class="empty">The triage list is empty.</td></tr>';
+      } else {
+        body.innerHTML = entries.map(e => `
+          <tr class="${e.id === selectedId ? "selected" : ""}">
+            <td class="mono">${e.id}</td>
+            <td><span class="badge ${levelFor(e.attention)}">${e.attention}</span></td>
+            <td>${e.injury}</td>
+            <td><span class="badge ${levelFor(e.pain)}">${e.pain}</span></td>
+            <td><button type="button" class="btn-secondary btn-select" data-id="${e.id}">Select</button></td>
+          </tr>`).join("");
+      }
+      status.textContent = "Selected Entry: " + (selectedId ?? "none");
+      const has = selectedId !== null;
+      incBtn.disabled = decBtn.disabled = removeBtn.disabled = !has;
+    }
+
+    document.getElementById("load-btn").addEventListener("click", () => {
+      entries = sampleData.map(e => ({ ...e }));
+      selectedId = null;
+      render();
+    });
+
+    body.addEventListener("click", e => {
+      const b = e.target.closest("button[data-id]");
+      if (!b) return;
+      selectedId = Number(b.dataset.id);
+      render();
+    });
+
+    function change(delta) {
+      const e = entries.find(x => x.id === selectedId);
+      if (e) e.attention = Math.min(10, Math.max(1, e.attention + delta));
+      render();
+    }
+
+    incBtn.addEventListener("click", () => change(1));
+    decBtn.addEventListener("click", () => change(-1));
+    removeBtn.addEventListener("click", () => {
+      if (confirm("Remove entry " + selectedId + " from triage?")) {
+        entries = entries.filter(x => x.id !== selectedId);
+        selectedId = null;
+        render();
+      }
+    });
+  </script>
+</body>
+</html>

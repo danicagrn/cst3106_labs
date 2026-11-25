@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hospital Triage - User</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="user">
+  <nav class="topnav" aria-label="Main">
+    <div class="inner">
+      <a class="brand" href="home.html">🏥 Hospital Triage</a>
+      <ul>
+        <li><a class="link" href="home.html">← Back to Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Hospital Triage - User</h1>
+    <p class="description">Choose where it hurts and how strong the pain is, then submit.</p>
+
+    <section class="card" aria-labelledby="injury-heading">
+      <h2 id="injury-heading">Type of injury</h2>
+      <div class="chip-group" id="injury-group">
+        <button type="button" class="chip" aria-pressed="false" data-value="Head">🧠 Head</button>
+        <button type="button" class="chip" aria-pressed="false" data-value="Heart">❤️ Heart</button>
+        <button type="button" class="chip" aria-pressed="false" data-value="Lung">🫁 Lung</button>
+        <button type="button" class="chip" aria-pressed="false" data-value="Neck">🧍 Neck</button>
+        <button type="button" class="chip" aria-pressed="false" data-value="Stomach">🤢 Stomach</button>
+        <button type="button" class="chip" aria-pressed="false" data-value="Bone or Muscle">🦴 Bone or Muscle</button>
+        <button type="button" class="chip" aria-pressed="false" data-value="Burn or Cut">🩹 Burn or Cut</button>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="pain-heading">
+      <h2 id="pain-heading">Level of pain</h2>
+      <div class="pain-scale" id="pain-group"></div>
+      <div class="scale-labels"><span>1 = Not bad</span><span>10 = Unbearable</span></div>
+    </section>
+
+    <div class="submit-wrap">
+      <button type="button" class="btn-primary" id="submit-btn" disabled>Submit Entry</button>
+    </div>
+    <p class="confirmation" id="confirmation" role="status" hidden></p>
+  </main>
+
+  <script>
+    let injury = null;
+    let pain = null;
+
+    const painGroup = document.getElementById("pain-group");
+    const submitBtn = document.getElementById("submit-btn");
+    const confirmation = document.getElementById("confirmation");
+
+    function levelFor(n) {
+      if (n <= 3) return "low";
+      if (n <= 6) return "moderate";
+      if (n <= 8) return "high";
+      return "critical";
+    }
+
+    // Build pain buttons 1-10
+    for (let i = 1; i <= 10; i++) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "pain-btn";
+      b.textContent = i;
+      b.dataset.value = i;
+      b.dataset.level = levelFor(i);
+      b.setAttribute("aria-pressed", "false");
+      painGroup.appendChild(b);
+    }
+
+    function selectOne(group, target) {
+      group.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", "false"));
+      target.setAttribute("aria-pressed", "true");
+    }
+
+    function refreshSubmit() {
+      submitBtn.disabled = !(injury && pain);
+    }
+
+    document.getElementById("injury-group").addEventListener("click", e => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      injury = b.dataset.value;
+      selectOne(e.currentTarget, b);
+      refreshSubmit();
+    });
+
+    painGroup.addEventListener("click", e => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      pain = Number(b.dataset.value);
+      selectOne(painGroup, b);
+      refreshSubmit();
+    });
+
+    submitBtn.addEventListener("click", () => {
+      confirmation.textContent = "Entry submitted: " + injury + ", pain level " + pain + ". Please wait to be called.";
+      confirmation.hidden = false;
+      // Reset form
+      injury = null; pain = null;
+      document.querySelectorAll("[aria-pressed='true']").forEach(b => b.setAttribute("aria-pressed", "false"));
+      refreshSubmit();
+    });
+  </script>
+</body>
+</html>
